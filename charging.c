@@ -14,6 +14,7 @@
 
 #include <atlas.h>
 #include <draw.h>
+#include "power_management.h"
 
 #define CHARGING_SDL_VERSION "0.1.0"
 
@@ -218,6 +219,9 @@ int main (int argc, char** argv) {
 
     char percent_text[4];
     char current_text[6];
+
+    turn_on_screen();
+
     while (running) {
         SDL_RenderClear(renderer);
 
@@ -266,6 +270,8 @@ int main (int argc, char** argv) {
             SDL_RenderClear(renderer);
         }
     }
+
+    turn_off_screen();
 
     if(percent_atlas) free_character_atlas(percent_atlas);
     if(font_struct) TTF_CloseFont(font_struct);
